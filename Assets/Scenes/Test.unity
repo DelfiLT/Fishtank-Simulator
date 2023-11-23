@@ -238,6 +238,9 @@ GameObject:
   - component: {fileID: 549232547}
   - component: {fileID: 549232546}
   - component: {fileID: 549232549}
+  - component: {fileID: 549232550}
+  - component: {fileID: 549232551}
+  - component: {fileID: 549232552}
   m_Layer: 5
   m_Name: FoodButton
   m_TagString: Untagged
@@ -371,7 +374,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc71daabb1d9bd4795c947434a85094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <feeding>k__BackingField: 0
+--- !u!114 &549232550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549232544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39051cde3bcbdec42a9a29e5d6c789bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &549232551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549232544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &549232552
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549232544}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1205276393
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,8 +937,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1993776990}
   - component: {fileID: 1993776989}
-  - component: {fileID: 1993776991}
   - component: {fileID: 1993776992}
+  - component: {fileID: 1993776993}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -914,19 +976,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1993776991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993776988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507519514c515a44fa9d653c55b1381c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggler: {fileID: 549232549}
 --- !u!114 &1993776992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +988,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120cc263aa7b48048ae2a4c9f3d46899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1993776993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993776988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227ba86c520a2e746bb74202acab3be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feeding: 0
+  currentState: {fileID: 0}
+  idleState: {fileID: 0}
+  feedingState: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

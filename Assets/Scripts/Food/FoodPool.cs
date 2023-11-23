@@ -18,7 +18,7 @@ public class FoodPool : MonoBehaviour
 
     void Singleton()
     {
-        if (Instance != null && Instance != this) { Destroy(this); }
+        if(Instance != null && Instance != this) { Destroy(this); }
         else { Instance = this; }
     }
 

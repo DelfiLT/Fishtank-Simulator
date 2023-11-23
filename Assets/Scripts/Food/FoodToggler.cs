@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class FoodToggler : MonoBehaviour
 {
-    [field:SerializeField] public bool feeding { get; private set; }
+    MouseManager manager;
+
+    private void Start()
+    {
+        manager = MouseManager.Instance;
+    }
 
     public void Toggle()
     {
-        if (feeding == false) { feeding = true; }
-        else feeding = false;
+        if (manager.feeding == false) { manager.feeding = true; manager.ChangeState(manager.feedingState); }
+        else { manager.feeding = false; manager.ChangeState(manager.idleState); }
+
+
     }
 }
