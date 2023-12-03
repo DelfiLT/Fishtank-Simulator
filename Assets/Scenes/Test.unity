@@ -960,7 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodPrefab: {fileID: 8349889715305747134, guid: dc279bbd9e2af904ca1919dbc2717cbf, type: 3}
   pooledFood: []
-  poolSize: 4
+  poolSize: 30
 --- !u!4 &1993776990
 Transform:
   m_ObjectHideFlags: 0
