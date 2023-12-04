@@ -6,7 +6,7 @@ using UnityEngine;
 public class Flock : MonoBehaviour
 {
     [Header("Spawn Setup")]
-    [SerializeField] private FlockUnit flockUnitPrefab;
+    public FlockUnit flockUnitPrefab;
     [SerializeField] private int flockSize;
     [SerializeField] private Vector3 spawnBounds;
 
@@ -69,6 +69,7 @@ public class Flock : MonoBehaviour
     private void Start()
     {
         GenerateUnits();
+        Debug.Log("initial units" + allUnits.Length);
     }
 
     private void Update()

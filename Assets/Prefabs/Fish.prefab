@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8001758833420644017}
   - component: {fileID: -6060570702735100099}
   - component: {fileID: -8745862156650850368}
+  - component: {fileID: -3929345029547197693}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -174,10 +175,25 @@ MonoBehaviour:
   maxHp: 100
   hpTime: 0.2
   xp: 0
-  maxXp: 20
+  maxXp: 100
   age: 5
   maxAge: 5
   ageTime: 0.02
+--- !u!114 &-3929345029547197693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613692717590219352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9028e89684cd2604b9a8f935fbba21e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sex: 0
+  canReproduce: 0
+  flockUnitPrefab: {fileID: -6060570702735100099}
 --- !u!1 &6995922505326795925
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,3 +262,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sex: 0
   canReproduce: 0
+  flockUnitPrefab: {fileID: 0}

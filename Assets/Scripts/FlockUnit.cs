@@ -17,7 +17,7 @@ public class FlockUnit : MonoBehaviour
     private Flock assignedFlock;
     private Vector3 currentVelocity;
     private Vector3 currentObstacleAvoidanceVector;
-    private float speed;
+    public float speed;
     private Transform food;
 
     public Transform myTransform { get; set; }

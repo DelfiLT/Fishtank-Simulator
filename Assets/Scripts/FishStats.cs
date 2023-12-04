@@ -37,7 +37,6 @@ public class FishStats : MonoBehaviour
             hp = 0;
             if (hp == 0)
             {
-                Debug.Log("Die");
                 Destroy(gameObject);
             }
         }
