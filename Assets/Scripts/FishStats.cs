@@ -53,8 +53,7 @@ public class FishStats : MonoBehaviour
     public void Eat()
     {
         hp = hp + ((maxHp * 20) / 100);
-        //xp = xp + ((maxXp * 20) / 100);
-        xp = maxXp;
+        xp = xp + ((maxXp * 20) / 100);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Flock : MonoBehaviour
@@ -64,12 +65,11 @@ public class Flock : MonoBehaviour
     [SerializeField] private float _obstacleWeight;
     public float obstacleWeight { get { return _obstacleWeight; } }
 
-    public FlockUnit[] allUnits { get; set; }
+    public FlockUnit[] allUnits;
 
     private void Start()
     {
         GenerateUnits();
-        Debug.Log("initial units" + allUnits.Length);
     }
 
     private void Update()
@@ -78,6 +78,20 @@ public class Flock : MonoBehaviour
         {
             allUnits[i].MoveUnit();
         }
+    }
+
+    public void AddUnit(FlockUnit newUnit) {
+
+        FlockUnit[] newAllUnits = new FlockUnit[allUnits.Length + 1];
+
+        Array.Copy(allUnits, newAllUnits, allUnits.Length);
+
+        newAllUnits[newAllUnits.Length - 1] = newUnit;
+
+        newUnit.AssignFlock(this);
+        newUnit.InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
+
+        allUnits = newAllUnits;
     }
 
     private void GenerateUnits()

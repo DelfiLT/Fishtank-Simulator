@@ -46,9 +46,8 @@ public class FishReproduction : MonoBehaviour
 
     private void NewUnit()
     {
-        flock.allUnits[0] = Instantiate(flockUnitPrefab, transform.position, Quaternion.identity);
-        flock.allUnits[0].AssignFlock(flock);
-        flock.allUnits[0].InitializeSpeed(UnityEngine.Random.Range(flock.minSpeed, flock.maxSpeed));
+        FlockUnit unit = Instantiate(flockUnitPrefab, transform.position, Quaternion.identity);
+        flock.AddUnit(unit);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +61,6 @@ public class FishReproduction : MonoBehaviour
             {
                 NewUnit();
                 fishStats.xp = 0;
-                Debug.Log("child");
             }
         }
     }
