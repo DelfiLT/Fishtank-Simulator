@@ -61,7 +61,7 @@ public class FishStats : MonoBehaviour
         if (collision.gameObject.CompareTag("Food"))
         {
             Eat();
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
