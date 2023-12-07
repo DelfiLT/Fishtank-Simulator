@@ -66,6 +66,7 @@ public class Flock : MonoBehaviour
     public float obstacleWeight { get { return _obstacleWeight; } }
 
     public FlockUnit[] allUnits;
+    private Transform food;
 
     private void Start()
     {
@@ -74,9 +75,18 @@ public class Flock : MonoBehaviour
 
     private void Update()
     {
+        food = GameObject.FindGameObjectWithTag("Food")?.transform;
+
         for (int i = 0; i < allUnits.Length; i++)
         {
-            allUnits[i].MoveUnit();
+            if (food != null)
+            {
+                allUnits[i].FindFood(food);
+            } 
+            else
+            {
+                allUnits[i].MoveUnit();
+            }
         }
     }
 

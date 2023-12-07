@@ -17,8 +17,8 @@ public class FlockUnit : MonoBehaviour
     private Flock assignedFlock;
     private Vector3 currentVelocity;
     private Vector3 currentObstacleAvoidanceVector;
-    public float speed;
-    private Transform food;
+    private float speed;
+
 
     public Transform myTransform { get; set; }
 
@@ -39,12 +39,6 @@ public class FlockUnit : MonoBehaviour
 
     public void MoveUnit()
     {
-        food = GameObject.FindGameObjectWithTag("Food")?.transform;
-        if (food != null)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, food.position, speed * Time.deltaTime);
-        }
-
         FindNeighbours();
         CalculateSpeed();
 
@@ -62,6 +56,11 @@ public class FlockUnit : MonoBehaviour
 
         myTransform.forward = moveVector;
         myTransform.position += moveVector * Time.deltaTime;
+    }
+
+    public void FindFood(Transform food)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, food.position, speed * Time.deltaTime);
     }
 
 
