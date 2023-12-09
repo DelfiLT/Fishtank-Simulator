@@ -19,6 +19,13 @@ public class FishStats : MonoBehaviour
     [SerializeField] private float maxAge;
     [SerializeField] private float ageTime;
 
+    private Flock flock;
+
+    private void Awake()
+    {
+        flock = GameObject.FindGameObjectWithTag("Flock").GetComponent<Flock>();
+    }
+
     private void FixedUpdate()
     {
         ManageHealth();
@@ -32,14 +39,28 @@ public class FishStats : MonoBehaviour
             hp -= Time.deltaTime * hpTime + ((hp * 0.01f) / 100) * age;
         }
 
+        if(hp > maxHp)
+        {
+            hp = maxHp;
+        }
+
         if (hp <= 0)
         {
             hp = 0;
             if (hp == 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
+    }
+
+    public void Die()
+    {
+        FlockUnit flockUnit = this.GetComponent<FlockUnit>();
+        List<FlockUnit> allUnitsList = new List<FlockUnit>(flock.allUnits);
+        allUnitsList.Remove(flockUnit);
+        flock.allUnits = allUnitsList.ToArray();
+        Destroy(gameObject);
     }
 
     public void ManageAge()
@@ -53,7 +74,8 @@ public class FishStats : MonoBehaviour
     public void Eat()
     {
         hp = hp + ((maxHp * 20) / 100);
-        xp = xp + ((maxXp * 20) / 100);
+        xp = maxHp;
+        //xp = xp + ((maxXp * 20) / 100);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -9,6 +9,7 @@ public class FlockUnit : MonoBehaviour
     [SerializeField] private float FOVAngle;
     [SerializeField] private float smoothDamp;
     [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private LayerMask foodMask;
     [SerializeField] private Vector3[] directionsToCheckWhenAvoidingObstacles;
 
     private List<FlockUnit> cohesionNeighbours = new List<FlockUnit>();
@@ -18,7 +19,6 @@ public class FlockUnit : MonoBehaviour
     private Vector3 currentVelocity;
     private Vector3 currentObstacleAvoidanceVector;
     private float speed;
-
 
     public Transform myTransform { get; set; }
 
@@ -39,6 +39,7 @@ public class FlockUnit : MonoBehaviour
 
     public void MoveUnit()
     {
+        FindFood();
         FindNeighbours();
         CalculateSpeed();
 
@@ -57,10 +58,16 @@ public class FlockUnit : MonoBehaviour
         myTransform.forward = moveVector;
         myTransform.position += moveVector * Time.deltaTime;
     }
+    
 
-    public void FindFood(Transform food)
+    public void FindFood()
     {
-        transform.position = Vector3.MoveTowards(transform.position, food.position, speed * Time.deltaTime);
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 5, foodMask))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * 2 * Time.deltaTime);
+        }
     }
 
 
