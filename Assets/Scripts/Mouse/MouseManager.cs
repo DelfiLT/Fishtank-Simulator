@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-    public bool feeding;
-
     [SerializeField] MouseState currentState;
     public MouseIdle idleState;
     public MouseFeeding feedingState;
@@ -23,13 +21,13 @@ public class MouseManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = idleState;
+        ChangeState(idleState);
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentState.ClickAction();
+            currentState.OnClick();
         }
     }
 

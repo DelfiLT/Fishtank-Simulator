@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class MouseState : MonoBehaviour
 {
-    public abstract void ClickAction();
+    //public abstract void OnEnter();
+    public abstract void OnClick();
 }
