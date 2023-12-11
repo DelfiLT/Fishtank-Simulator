@@ -21,6 +21,9 @@ public class FishStats : MonoBehaviour
 
     private Flock flock;
 
+    public delegate void DeathEvent();
+    public static DeathEvent deathEvent;
+
     private void Awake()
     {
         age = PlayerPrefs.GetFloat("FishAge");
@@ -60,6 +63,7 @@ public class FishStats : MonoBehaviour
 
     public void Die()
     {
+        deathEvent?.Invoke();
         FlockUnit flockUnit = this.GetComponent<FlockUnit>();
         List<FlockUnit> allUnitsList = new List<FlockUnit>(flock.allUnits);
         allUnitsList.Remove(flockUnit);

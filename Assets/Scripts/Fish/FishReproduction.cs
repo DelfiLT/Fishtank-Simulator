@@ -22,6 +22,9 @@ public class FishReproduction : MonoBehaviour
     private FishStats fishStats;
     private Flock flock;
 
+    public delegate void BornEvent();
+    public static BornEvent bornEvent;
+
     private void Start()
     {
         sex = (Sex)Random.Range(0, 2);
@@ -46,6 +49,7 @@ public class FishReproduction : MonoBehaviour
 
     private void NewUnit()
     {
+        bornEvent?.Invoke();
         FlockUnit unit = Instantiate(flockUnitPrefab, transform.position, Quaternion.identity);
         flock.AddUnit(unit);
     }
