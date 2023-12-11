@@ -64,12 +64,11 @@ public class FlockUnit : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 5, foodMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 6, foodMask))
         {
             transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * 2 * Time.deltaTime);
         }
     }
-
 
     private void FindNeighbours()
     {

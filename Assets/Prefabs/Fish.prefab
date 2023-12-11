@@ -179,8 +179,8 @@ MonoBehaviour:
   hpTime: 0.2
   xp: 0
   maxXp: 100
-  age: 5
-  maxAge: 5
+  age: 0
+  maxAge: 15
   ageTime: 0.02
 --- !u!114 &-3929345029547197693
 MonoBehaviour:

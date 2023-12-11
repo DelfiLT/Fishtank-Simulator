@@ -23,6 +23,10 @@ public class FishStats : MonoBehaviour
 
     private void Awake()
     {
+        age = PlayerPrefs.GetFloat("FishAge");
+        hpTime = PlayerPrefs.GetFloat("TimeScale") / 10;
+        ageTime = PlayerPrefs.GetFloat("TimeScale") / 100;
+
         flock = GameObject.FindGameObjectWithTag("Flock").GetComponent<Flock>();
     }
 
@@ -73,9 +77,8 @@ public class FishStats : MonoBehaviour
 
     public void Eat()
     {
-        hp = hp + ((maxHp * 20) / 100);
-        xp = maxHp;
-        //xp = xp + ((maxXp * 20) / 100);
+        hp = hp + ((maxHp * 40) / 100);
+        xp = xp + ((maxXp * 30) / 100);
     }
 
     private void OnCollisionEnter(Collision collision)

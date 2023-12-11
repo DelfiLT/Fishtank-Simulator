@@ -69,6 +69,7 @@ public class Flock : MonoBehaviour
 
     private void Start()
     {
+        flockSize = PlayerPrefs.GetInt("FishQuantity");
         GenerateUnits();
     }
 
