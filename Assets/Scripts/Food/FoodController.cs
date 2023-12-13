@@ -2,10 +2,21 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-    float newGravity = -0.7f; //queria ponerle serializefield pero por alguna razon eso lo rompe???
+    bool inWater;
+    Rigidbody rb;
 
-    void Start()
+    private void Awake() => rb = GetComponent<Rigidbody>();
+
+    private void OnEnable() => inWater = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        Physics.gravity = new Vector3(0, newGravity, 0);
+        if (other.CompareTag("Water")) { inWater = true; }
+    }
+
+    private void FixedUpdate()
+    {
+        if (inWater) { rb.velocity = rb.velocity / 1.05f; }
+        else { rb.AddForce(transform.up * -9.8f, ForceMode.Force); }
     }
 }
