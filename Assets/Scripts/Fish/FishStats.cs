@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -23,6 +24,8 @@ public class FishStats : MonoBehaviour
 
     public delegate void DeathEvent();
     public static DeathEvent deathEvent;
+
+    public static Action newAgeRecordEvent;
 
     private void Awake()
     {
@@ -76,6 +79,13 @@ public class FishStats : MonoBehaviour
         if (age <= maxAge)
         {
             age += Time.deltaTime * ageTime;
+
+            if(age < PlayerPrefs.GetFloat("AgeRecord")) 
+            {
+                newAgeRecordEvent?.Invoke();
+                PlayerPrefs.SetFloat("AgeRecord", age);
+            }
+            
         }
     }
 

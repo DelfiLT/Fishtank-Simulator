@@ -28,6 +28,7 @@ public class Stats : MonoBehaviour
 
     private int deathsCounter;
     private int bornsCounter;
+    private float ageRecord;
     private GameObject[] fishes;
 
     private void Start()
@@ -52,6 +53,12 @@ public class Stats : MonoBehaviour
         bornsValue.text = bornsCounter.ToString();
     }
 
+    void NewAgeRecord()
+    {
+        ageRecord = PlayerPrefs.GetFloat("AgeRecord");
+        olderAgeValue.text = ageRecord.ToString();
+    }
+
     public void OnSimulationEnded()
     {
         fishes = GameObject.FindGameObjectsWithTag("Fish");
@@ -70,7 +77,7 @@ public class Stats : MonoBehaviour
         finalFishes.text = "Final Fishes " + allFishes.ToString();
         finalDeaths.text = "Death Fishes " + deathsCounter.ToString();
         finalBorns.text = "Born Fishes " + bornsCounter.ToString();
-        finalOldestAge.text = "Oldest Age ";
+        finalOldestAge.text = "Oldest Age " + ageRecord.ToString();
         finalYoungestAge.text = "Youngest Age ";
     }
 
@@ -78,12 +85,15 @@ public class Stats : MonoBehaviour
     private void OnEnable()
     {
         FishStats.deathEvent += DeathCounter;
+        FishStats.newAgeRecordEvent += NewAgeRecord;
         FishReproduction.bornEvent += BornCounter;
+
     }
 
     private void OnDisable()
     {
         FishStats.deathEvent -= DeathCounter;
+        FishStats.newAgeRecordEvent -= NewAgeRecord;
         FishReproduction.bornEvent -= BornCounter;
     }
 }

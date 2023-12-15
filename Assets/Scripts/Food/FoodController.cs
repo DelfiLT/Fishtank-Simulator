@@ -7,11 +7,16 @@ public class FoodController : MonoBehaviour
 
     private void Awake() => rb = GetComponent<Rigidbody>();
 
-    private void OnEnable() => inWater = false;
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
+        inWater = false;
+        rb.velocity = Vector3.zero;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Water")) { inWater = true; }
+        if (other.CompareTag("Water")) { Debug.Log("agua"); inWater = true; }
     }
 
     private void FixedUpdate()
