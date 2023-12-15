@@ -7,9 +7,9 @@ public class FoodController : MonoBehaviour
 
     private void Awake() => rb = GetComponent<Rigidbody>();
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Water") { inWater = true; }
+        if (other.CompareTag("Water")) { inWater = true; }
     }
 
     private void FixedUpdate()
