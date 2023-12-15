@@ -19,14 +19,16 @@ public class Stats : MonoBehaviour
     public TextMeshProUGUI finalFishes;
     public TextMeshProUGUI finalDeaths;
     public TextMeshProUGUI finalBorns;
-    public TextMeshProUGUI finalOlderAge;
+    public TextMeshProUGUI finalOldestAge;
     public TextMeshProUGUI finalYoungestAge;
+
+    [Header("Stats Config")]
     public Button endSimulationButton;
     public GameObject finalStatsWindow;
 
     private int deathsCounter;
     private int bornsCounter;
-    public GameObject[] fishes;
+    private GameObject[] fishes;
 
     private void Start()
     {
@@ -68,6 +70,8 @@ public class Stats : MonoBehaviour
         finalFishes.text = "Final Fishes " + allFishes.ToString();
         finalDeaths.text = "Death Fishes " + deathsCounter.ToString();
         finalBorns.text = "Born Fishes " + bornsCounter.ToString();
+        finalOldestAge.text = "Oldest Age ";
+        finalYoungestAge.text = "Youngest Age ";
     }
 
 
