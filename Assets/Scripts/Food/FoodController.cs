@@ -7,6 +7,8 @@ public class FoodController : MonoBehaviour
 
     private void Awake() => rb = GetComponent<Rigidbody>();
 
+    private void OnEnable() => inWater = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Water")) { inWater = true; }
