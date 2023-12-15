@@ -1,29 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
+    [Header("In Game Stats")]
     public TextMeshProUGUI initialFishValue;
     public TextMeshProUGUI deathsValue;
     public TextMeshProUGUI bornsValue;
     public TextMeshProUGUI olderAgeValue;
     public TextMeshProUGUI youngestAgeValue;
 
+    [Header("Final Stats")]
+    public TextMeshProUGUI finalInitialFishes;
+    public TextMeshProUGUI finalFishes;
+    public TextMeshProUGUI finalDeaths;
+    public TextMeshProUGUI finalBorns;
+    public TextMeshProUGUI finalOlderAge;
+    public TextMeshProUGUI finalYoungestAge;
+    public Button endSimulationButton;
+    public GameObject finalStatsWindow;
+
     private int deathsCounter;
     private int bornsCounter;
-
-    public static Stats StatsSharedInstance;
-
-    private void Awake()
-    {
-        StatsSharedInstance = this;
-    }
+    public GameObject[] fishes;
 
     private void Start()
     {
         initialFishValue.text = PlayerPrefs.GetInt("FishQuantity").ToString();
+
+        endSimulationButton.onClick.AddListener(() =>
+        {
+            OnSimulationEnded();
+        });
     }
 
     void DeathCounter()
@@ -40,21 +52,30 @@ public class Stats : MonoBehaviour
 
     public void OnSimulationEnded()
     {
-        int allFishes = PlayerPrefs.GetInt("FishQuantity") - deathsCounter + bornsCounter;
+        fishes = GameObject.FindGameObjectsWithTag("Fish");
 
-        PlayerPrefs.SetInt("FinalFishQuantity", allFishes);
-        PlayerPrefs.SetInt("Deaths", deathsCounter);
-        PlayerPrefs.SetInt("Borns", bornsCounter);
+        foreach (GameObject fish in fishes) 
+        { 
+            fish.GetComponent<FishStats>().enabled = false;
+            fish.GetComponent<FishReproduction>().enabled = false;
+        }
 
-        //cargar escena final o pausar la simulacion y mostrar estos ultimos valores
+        int allFishes = fishes.Length;
+
+        finalStatsWindow.SetActive(true);
+
+        finalInitialFishes.text = "Initial Fishes " + PlayerPrefs.GetInt("FishQuantity").ToString();
+        finalFishes.text = "Final Fishes " + allFishes.ToString();
+        finalDeaths.text = "Death Fishes " + deathsCounter.ToString();
+        finalBorns.text = "Born Fishes " + bornsCounter.ToString();
     }
+
 
     private void OnEnable()
     {
         FishStats.deathEvent += DeathCounter;
         FishReproduction.bornEvent += BornCounter;
     }
-
 
     private void OnDisable()
     {
