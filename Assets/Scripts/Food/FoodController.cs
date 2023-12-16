@@ -16,7 +16,7 @@ public class FoodController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Water")) { Debug.Log("agua"); inWater = true; }
+        if (other.CompareTag("Water")) { inWater = true; }
     }
 
     private void FixedUpdate()

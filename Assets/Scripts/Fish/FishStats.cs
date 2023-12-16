@@ -25,10 +25,16 @@ public class FishStats : MonoBehaviour
     public delegate void DeathEvent();
     public static DeathEvent deathEvent;
 
-    public static Action newAgeRecordEvent;
+    public delegate void OlderAgeEvent();
+    public static OlderAgeEvent olderAgeEvent;
+
+    public delegate void YoungestAgeEvent();
+    public static YoungestAgeEvent youngestAgeEvent;
 
     private void Awake()
     {
+        youngestAgeEvent?.Invoke();
+
         age = PlayerPrefs.GetFloat("FishAge");
         hpTime = PlayerPrefs.GetFloat("TimeScale") / 10;
         ageTime = PlayerPrefs.GetFloat("TimeScale") / 100;
@@ -64,6 +70,37 @@ public class FishStats : MonoBehaviour
         }
     }
 
+    public void ManageAge()
+    {
+        if (age <= maxAge)
+        {
+            age += Time.deltaTime * ageTime;
+
+            if(age > PlayerPrefs.GetFloat("AgeRecord")) 
+            {
+                olderAgeEvent?.Invoke();
+                PlayerPrefs.SetFloat("AgeRecord", age);
+            }
+
+            GameObject[] fishes = GameObject.FindGameObjectsWithTag("Fish");
+            foreach (GameObject fish in fishes)
+            {
+                float fishAge = fish.GetComponent<FishStats>().age;
+                if (age < fishAge)
+                {
+                    youngestAgeEvent?.Invoke();
+                    PlayerPrefs.SetFloat("YoungestAge", age);
+                }
+            }
+        }
+    }
+
+    public void Eat()
+    {
+        hp = hp + ((maxHp * 40) / 100);
+        xp = xp + ((maxXp * 30) / 100);
+    }
+
     public void Die()
     {
         deathEvent?.Invoke();
@@ -74,26 +111,6 @@ public class FishStats : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void ManageAge()
-    {
-        if (age <= maxAge)
-        {
-            age += Time.deltaTime * ageTime;
-
-            if(age < PlayerPrefs.GetFloat("AgeRecord")) 
-            {
-                newAgeRecordEvent?.Invoke();
-                PlayerPrefs.SetFloat("AgeRecord", age);
-            }
-            
-        }
-    }
-
-    public void Eat()
-    {
-        hp = hp + ((maxHp * 40) / 100);
-        xp = xp + ((maxXp * 30) / 100);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

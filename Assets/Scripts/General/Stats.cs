@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour
     public TextMeshProUGUI bornsValue;
     public TextMeshProUGUI olderAgeValue;
     public TextMeshProUGUI youngestAgeValue;
+    public TextMeshProUGUI actualFishesValue;
 
     [Header("Final Stats")]
     public TextMeshProUGUI finalInitialFishes;
@@ -28,7 +29,6 @@ public class Stats : MonoBehaviour
 
     private int deathsCounter;
     private int bornsCounter;
-    private float ageRecord;
     private GameObject[] fishes;
 
     private void Start()
@@ -39,6 +39,12 @@ public class Stats : MonoBehaviour
         {
             OnSimulationEnded();
         });
+    }
+
+    private void Update()
+    {
+        PlayerPrefs.SetInt("ActualFishQuantity", PlayerPrefs.GetInt("FishQuantity") - deathsCounter + bornsCounter);
+        actualFishesValue.text = (PlayerPrefs.GetInt("FishQuantity") - deathsCounter + bornsCounter).ToString();
     }
 
     void DeathCounter()
@@ -53,10 +59,14 @@ public class Stats : MonoBehaviour
         bornsValue.text = bornsCounter.ToString();
     }
 
-    void NewAgeRecord()
+    void OldestAgeRecord()
     {
-        ageRecord = PlayerPrefs.GetFloat("AgeRecord");
-        olderAgeValue.text = ageRecord.ToString();
+        olderAgeValue.text = PlayerPrefs.GetFloat("AgeRecord").ToString("0");
+    }
+
+    void YoungestAge()
+    {
+        youngestAgeValue.text = PlayerPrefs.GetFloat("YoungestAge").ToString("0");
     }
 
     public void OnSimulationEnded()
@@ -74,26 +84,27 @@ public class Stats : MonoBehaviour
         finalStatsWindow.SetActive(true);
 
         finalInitialFishes.text = "Initial Fishes " + PlayerPrefs.GetInt("FishQuantity").ToString();
-        finalFishes.text = "Final Fishes " + allFishes.ToString();
         finalDeaths.text = "Death Fishes " + deathsCounter.ToString();
         finalBorns.text = "Born Fishes " + bornsCounter.ToString();
-        finalOldestAge.text = "Oldest Age " + ageRecord.ToString();
-        finalYoungestAge.text = "Youngest Age ";
+        finalOldestAge.text = "Oldest Age " + PlayerPrefs.GetFloat("AgeRecord").ToString("0");
+        finalYoungestAge.text = "Youngest Age " + PlayerPrefs.GetFloat("YoungestAge").ToString("0");
+        finalFishes.text = "Final Fishes " + allFishes.ToString();
     }
 
 
     private void OnEnable()
     {
         FishStats.deathEvent += DeathCounter;
-        FishStats.newAgeRecordEvent += NewAgeRecord;
         FishReproduction.bornEvent += BornCounter;
-
+        FishStats.olderAgeEvent += OldestAgeRecord;
+        FishStats.youngestAgeEvent += YoungestAge;
     }
 
     private void OnDisable()
     {
         FishStats.deathEvent -= DeathCounter;
-        FishStats.newAgeRecordEvent -= NewAgeRecord;
         FishReproduction.bornEvent -= BornCounter;
+        FishStats.olderAgeEvent -= OldestAgeRecord;
+        FishStats.youngestAgeEvent -= YoungestAge;
     }
 }

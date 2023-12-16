@@ -63,7 +63,10 @@ public class FishReproduction : MonoBehaviour
 
             if (collisionSex != sex)
             {
-                NewUnit();
+                if(PlayerPrefs.GetInt("ActualFishQuantity") < 50)
+                {
+                    NewUnit();
+                }
                 fishStats.xp = 0;
             }
         }

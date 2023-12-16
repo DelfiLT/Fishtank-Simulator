@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 216665766}
   m_HandleRect: {fileID: 1773127567}
   m_Direction: 0
-  m_MinValue: 1
+  m_MinValue: 4
   m_MaxValue: 15
   m_WholeNumbers: 1
   m_Value: 15
@@ -3153,9 +3153,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6600165}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746865dd8a980e1468cc927bda3c5c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flockUnitPrefab: {fileID: -6060570702735100099, guid: 86d98a2a5a02eb846a3621be332c04ff, type: 3}
+  flockUnitPrefab: {fileID: -3476592500245557029, guid: 7a8e5bf7dad7c024e9b72e2688663137, type: 3}
   flockSize: 20
   spawnBounds: {x: 5, y: 2, z: 3}
   _minSpeed: 1

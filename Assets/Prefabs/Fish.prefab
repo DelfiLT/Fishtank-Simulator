@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FOVAngle: 270
   smoothDamp: 1
-  foodRadio: 1
+  foodRadio: 3
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
