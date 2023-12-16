@@ -21,6 +21,7 @@ public class FishStats : MonoBehaviour
     [SerializeField] private float ageTime;
 
     private Flock flock;
+    private Cleaning cleaning;
 
     public delegate void DeathEvent();
     public static DeathEvent deathEvent;
@@ -40,6 +41,7 @@ public class FishStats : MonoBehaviour
         ageTime = PlayerPrefs.GetFloat("TimeScale") / 100;
 
         flock = GameObject.FindGameObjectWithTag("Flock").GetComponent<Flock>();
+        cleaning = GameObject.FindGameObjectWithTag("Cleaning").GetComponent<Cleaning>();
     }
 
     private void FixedUpdate()
@@ -50,9 +52,13 @@ public class FishStats : MonoBehaviour
 
     public void ManageHealth()
     {
-        if (hp <= maxHp && hp >= 0)
+        if (hp <= maxHp && hp >= 0 && !cleaning.maxDirt)
         {
             hp -= Time.deltaTime * hpTime + ((hp * 0.01f) / 100) * age;
+        } 
+        else
+        {
+            hp -= Time.deltaTime * hpTime * 1.5f + ((hp * 0.01f) / 100) * age;
         }
 
         if(hp > maxHp)
@@ -93,6 +99,19 @@ public class FishStats : MonoBehaviour
                 }
             }
         }
+
+        if(age <= 5)
+        {
+            //tamaño chiquito
+        }
+        if(age > 5 && age <= 10)
+        {
+            //tamaño mediano
+        }
+        if(age > 10 && age <= 15)
+        {
+            //tamaño grande
+        }
     }
 
     public void Eat()
@@ -103,6 +122,7 @@ public class FishStats : MonoBehaviour
 
     public void Die()
     {
+        //animacion de muerte
         deathEvent?.Invoke();
         FlockUnit flockUnit = this.GetComponent<FlockUnit>();
         List<FlockUnit> allUnitsList = new List<FlockUnit>(flock.allUnits);
