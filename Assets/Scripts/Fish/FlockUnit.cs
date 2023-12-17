@@ -69,6 +69,7 @@ public class FlockUnit : MonoBehaviour
         {
             if (food.gameObject.CompareTag("Food"))
             {
+                transform.LookAt(food.transform.position);
                 transform.position = Vector3.MoveTowards(transform.position, food.transform.position, speed * Time.deltaTime);
             }
         }

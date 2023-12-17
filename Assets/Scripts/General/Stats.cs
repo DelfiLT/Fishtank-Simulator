@@ -33,6 +33,8 @@ public class Stats : MonoBehaviour
 
     private void Start()
     {
+        finalStatsWindow.SetActive(false);
+
         initialFishValue.text = PlayerPrefs.GetInt("FishQuantity").ToString();
 
         endSimulationButton.onClick.AddListener(() =>
@@ -83,12 +85,12 @@ public class Stats : MonoBehaviour
 
         finalStatsWindow.SetActive(true);
 
-        finalInitialFishes.text = "Initial Fishes " + PlayerPrefs.GetInt("FishQuantity").ToString();
-        finalDeaths.text = "Death Fishes " + deathsCounter.ToString();
-        finalBorns.text = "Born Fishes " + bornsCounter.ToString();
-        finalOldestAge.text = "Oldest Age " + PlayerPrefs.GetFloat("AgeRecord").ToString("0");
-        finalYoungestAge.text = "Youngest Age " + PlayerPrefs.GetFloat("YoungestAge").ToString("0");
-        finalFishes.text = "Final Fishes " + allFishes.ToString();
+        finalInitialFishes.text = PlayerPrefs.GetInt("FishQuantity").ToString();
+        finalDeaths.text = deathsCounter.ToString();
+        finalBorns.text = bornsCounter.ToString();
+        finalOldestAge.text = PlayerPrefs.GetFloat("AgeRecord").ToString("0");
+        finalYoungestAge.text = PlayerPrefs.GetFloat("YoungestAge").ToString("0");
+        finalFishes.text = allFishes.ToString();
     }
 
 
