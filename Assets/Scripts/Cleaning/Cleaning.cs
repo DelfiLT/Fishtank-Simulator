@@ -69,16 +69,8 @@ public class Cleaning : MonoBehaviour
 
     public void CleanFishtank() 
     {
-        //StartCoroutine(cleaning());
         sponge.SetTrigger("Clean");
         dirt = 0; 
         maxDirt = false;
     }
-
-    //IEnumerator cleaning()
-    //{
-    //    sponge.SetActive(true);
-    //    yield return new WaitForSeconds(0.7f);
-    //    sponge.SetActive(false);
-    //}
 } 
