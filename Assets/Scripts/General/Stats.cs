@@ -76,7 +76,7 @@ public class Stats : MonoBehaviour
         foreach (GameObject fish in fishes) 
         { 
             fish.GetComponent<FishStats>().enabled = false;
-            fish.GetComponent<FishReproduction>().enabled = false;
+            fish.GetComponentInChildren<FishReproduction>().enabled = false;
         }
 
         int allFishes = fishes.Length;

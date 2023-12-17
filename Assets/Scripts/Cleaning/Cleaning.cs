@@ -10,6 +10,11 @@ public class Cleaning : MonoBehaviour
     [SerializeField] private float dirtTime;
     public Button cleanButton;
     public bool maxDirt;
+    public GameObject water;
+    public Material cleanWater;
+    public Material littleBitDirtyWater;
+    public Material dirtyWater;
+    public Material veryDirtyWater;
 
     void Awake()
     {
@@ -44,20 +49,20 @@ public class Cleaning : MonoBehaviour
 
         if (dirt < 2)
         {
-            //pecera limpia
+            water.GetComponent<Renderer>().material = cleanWater;
         }
         if (dirt > 2 && dirt < 4)
         {
-            //pecera un poco sucia
+            water.GetComponent<Renderer>().material = littleBitDirtyWater;
         }
         if (dirt > 4 && dirt < 6)
         {
-            //pecera muy sucia
+            water.GetComponent<Renderer>().material = dirtyWater;
         }
         if (dirt > 6 && dirt <= 8)
         {
             maxDirt = true;
-            //pecera muy sucia
+            water.GetComponent<Renderer>().material = veryDirtyWater;
         }
     }
 
