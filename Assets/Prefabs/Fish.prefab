@@ -4955,6 +4955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FOVAngle: 270
   smoothDamp: 1
+  foodRadio: 3
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
@@ -5056,7 +5057,7 @@ GameObject:
   - component: {fileID: 8788430434714865059}
   m_Layer: 0
   m_Name: Reproduction
-  m_TagString: Fish
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

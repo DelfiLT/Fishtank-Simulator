@@ -28,6 +28,14 @@ public class FishReproduction : MonoBehaviour
     private void Start()
     {
         sex = (Sex)Random.Range(0, 2);
+        if(sex == Sex.Female)
+        {
+            //textura hembra
+        } else
+        {
+            //textura macho
+        }
+
         fishStats = gameObject.GetComponentInParent<FishStats>();
         flock = GameObject.FindGameObjectWithTag("Flock").GetComponent<Flock>();
         flockUnitPrefab = flock.flockUnitPrefab;
@@ -49,6 +57,7 @@ public class FishReproduction : MonoBehaviour
 
     private void NewUnit()
     {
+        //particula nacimiento
         bornEvent?.Invoke();
         FlockUnit unit = Instantiate(flockUnitPrefab, transform.position, Quaternion.identity);
         flock.AddUnit(unit);
@@ -63,7 +72,10 @@ public class FishReproduction : MonoBehaviour
 
             if (collisionSex != sex)
             {
-                NewUnit();
+                if(PlayerPrefs.GetInt("ActualFishQuantity") < 50)
+                {
+                    NewUnit();
+                }
                 fishStats.xp = 0;
             }
         }

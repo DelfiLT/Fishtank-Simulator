@@ -8,6 +8,7 @@ TagManager:
   - Fish
   - Flock
   - Water
+  - Cleaning
   layers:
   - Default
   - TransparentFX

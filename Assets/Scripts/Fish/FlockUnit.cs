@@ -8,6 +8,7 @@ public class FlockUnit : MonoBehaviour
 {
     [SerializeField] private float FOVAngle;
     [SerializeField] private float smoothDamp;
+    [SerializeField] private float foodRadio;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private LayerMask foodMask;
     [SerializeField] private Vector3[] directionsToCheckWhenAvoidingObstacles;
@@ -62,11 +63,14 @@ public class FlockUnit : MonoBehaviour
 
     public void FindFood()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Collider[] foods = Physics.OverlapSphere(this.transform.position, foodRadio);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 6, foodMask))
+        foreach(Collider food in foods)
         {
-            transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * 2 * Time.deltaTime);
+            if (food.gameObject.CompareTag("Food"))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, food.transform.position, speed * Time.deltaTime);
+            }
         }
     }
 
