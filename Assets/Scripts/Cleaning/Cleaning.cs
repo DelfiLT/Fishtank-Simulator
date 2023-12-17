@@ -15,6 +15,7 @@ public class Cleaning : MonoBehaviour
     public Material littleBitDirtyWater;
     public Material dirtyWater;
     public Material veryDirtyWater;
+    public Animator sponge;
 
     void Awake()
     {
@@ -67,9 +68,17 @@ public class Cleaning : MonoBehaviour
     }
 
     public void CleanFishtank() 
-    { 
-        //animacion de limpiar
+    {
+        //StartCoroutine(cleaning());
+        sponge.SetTrigger("Clean");
         dirt = 0; 
         maxDirt = false;
     }
-}
+
+    //IEnumerator cleaning()
+    //{
+    //    sponge.SetActive(true);
+    //    yield return new WaitForSeconds(0.7f);
+    //    sponge.SetActive(false);
+    //}
+} 
