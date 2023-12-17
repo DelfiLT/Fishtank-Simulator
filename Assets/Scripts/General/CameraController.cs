@@ -1,9 +1,10 @@
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] GameObject sideCam;
-    [SerializeField] GameObject topCam;
+    [SerializeField] CinemachineVirtualCamera sideCam;
+    [SerializeField] CinemachineVirtualCamera topCam;
 
     private void Awake()
     {
@@ -20,13 +21,13 @@ public class CameraController : MonoBehaviour
 
     void SideView()
     {
-        topCam.SetActive(false);
-        sideCam.SetActive(true);
+        sideCam.Priority = 20;
+        topCam.Priority = 10;
     }
 
     void TopView()
     {
-        sideCam.SetActive(false);
-        topCam.SetActive(true);
+        topCam.Priority = 20;
+        sideCam.Priority = 10;
     }
 }

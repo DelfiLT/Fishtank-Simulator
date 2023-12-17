@@ -69,6 +69,9 @@ public class Flock : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetFloat("AgeRecord", 0);
+        PlayerPrefs.SetFloat("YoungestAge", PlayerPrefs.GetFloat("FishAge"));
+
         flockSize = PlayerPrefs.GetInt("FishQuantity");
         GenerateUnits();
     }

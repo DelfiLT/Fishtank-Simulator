@@ -16,7 +16,7 @@ public class MouseFeeding : MouseState
 
             if (food != null)
             {
-                Vector3 spawnPosition = new Vector3(MousePosition.Instance.worldPosition.x + randomX, MousePosition.Instance.worldPosition.y, MousePosition.Instance.worldPosition.z + randomZ);
+                Vector3 spawnPosition = new Vector3(MousePosition.Instance.worldPosition.x + randomX, MousePosition.Instance.worldPosition.y - 1, MousePosition.Instance.worldPosition.z + randomZ);
                 food.transform.position = spawnPosition;
                 food.SetActive(true);
             }
