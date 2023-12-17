@@ -17,6 +17,9 @@ public class FishReproduction : MonoBehaviour
     public Sex sex;
     [SerializeField] private bool canReproduce = false;
     [SerializeField] private FlockUnit flockUnitPrefab;
+    public GameObject male;
+    public GameObject female;
+    public GameObject particleBirth;
 
     public FlockUnit unit { get; set; }
     private FishStats fishStats;
@@ -25,9 +28,23 @@ public class FishReproduction : MonoBehaviour
     public delegate void BornEvent();
     public static BornEvent bornEvent;
 
-    private void Start()
+    private void Awake()
     {
         sex = (Sex)Random.Range(0, 2);
+        if (sex == Sex.Female)
+        {
+            female.SetActive(true);
+            male.SetActive(false);
+        }
+        else
+        {
+            female.SetActive(false);
+            male.SetActive(true);
+        }
+    }
+
+    private void Start()
+    {
         fishStats = gameObject.GetComponentInParent<FishStats>();
         flock = GameObject.FindGameObjectWithTag("Flock").GetComponent<Flock>();
         flockUnitPrefab = flock.flockUnitPrefab;
@@ -49,6 +66,7 @@ public class FishReproduction : MonoBehaviour
 
     private void NewUnit()
     {
+        Instantiate(particleBirth,transform.position, Quaternion.identity);
         bornEvent?.Invoke();
         FlockUnit unit = Instantiate(flockUnitPrefab, transform.position, Quaternion.identity);
         flock.AddUnit(unit);
@@ -56,14 +74,17 @@ public class FishReproduction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Fish") && canReproduce)
+        if (other.gameObject.CompareTag("Reproduction") && canReproduce)
         {
             canReproduce = false;
             Sex collisionSex = other.gameObject.GetComponent<FishReproduction>().sex;
 
             if (collisionSex != sex)
             {
-                NewUnit();
+                if(PlayerPrefs.GetInt("ActualFishQuantity") < 50)
+                {
+                    NewUnit();
+                }
                 fishStats.xp = 0;
             }
         }
