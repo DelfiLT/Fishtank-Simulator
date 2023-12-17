@@ -9,6 +9,7 @@ TagManager:
   - Flock
   - Water
   - Cleaning
+  - Reproduction
   layers:
   - Default
   - TransparentFX

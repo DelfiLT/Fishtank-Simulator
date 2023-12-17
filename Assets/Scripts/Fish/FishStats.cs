@@ -20,6 +20,8 @@ public class FishStats : MonoBehaviour
     [SerializeField] private float maxAge;
     [SerializeField] private float ageTime;
 
+    public Animator animator;
+    public GameObject particleDie;
     private Flock flock;
     private Cleaning cleaning;
 
@@ -71,6 +73,7 @@ public class FishStats : MonoBehaviour
             hp = 0;
             if (hp == 0)
             {
+                Instantiate(particleDie, transform.position, Quaternion.identity);
                 Die();
             }
         }
@@ -102,15 +105,15 @@ public class FishStats : MonoBehaviour
 
         if(age <= 5)
         {
-            //tamaño chiquito
+            this.gameObject.transform.localScale = new Vector3(0.24f,0.24f,0.24f);
         }
         if(age > 5 && age <= 10)
         {
-            //tamaño mediano
+            this.gameObject.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
         }
         if(age > 10 && age <= 15)
         {
-            //tamaño grande
+            this.gameObject.transform.localScale = new Vector3(0.43f, 0.43f, 0.43f);
         }
     }
 
@@ -122,7 +125,6 @@ public class FishStats : MonoBehaviour
 
     public void Die()
     {
-        //animacion de muerte
         deathEvent?.Invoke();
         FlockUnit flockUnit = this.GetComponent<FlockUnit>();
         List<FlockUnit> allUnitsList = new List<FlockUnit>(flock.allUnits);
