@@ -5,15 +5,15 @@
 ## Fishes
 
 > The fishes have a herd algorithm that makes them behave with realistic movements, they check the distance from other fishes and from the fishtank glass.
-> Also, in this algorithm we've implemented the food finding.
+> Also, in this algorithm we've implemented food finding.
 > Apart from the fish AI, they have three important stats: HP, XP and Age.
-> - HP: goes down over time taking into account it's age and, if it is activated, the dirt from the fishtank. It can be restored through feeding, if not, the fish will die.
-> - XP: it's incremented once you feed the fish, when it reaches the maximun, the fish can have a child if it finds a couple.
+> - HP: goes down over time taking into account its age and, if it is activated, the dirt of the fishtank. It can be restored through feeding, otherwise, the fish will die.
+> - XP: it's incremented once you feed the fish, when it reaches the maximum, the fish can have a child if it finds a couple.
 > - Age: increases over time, the fish will grow according to it.
 
 ## Food
 
-> We have a food jar that we can use to feed the fishes, when it's activated, the camera will change to the top view. It has a limit of total food.
+> We have a food jar that we can use to feed the fishes, when it's activated, the camera will change to the top view. It has a limit of total active food.
 
 ## Cleaning
 
@@ -24,13 +24,13 @@
 > - Fish Quantity: the initial fish quantity.
 > - Fish Start Age: the initial age of the fishes, it also afects the newly born
 > - Time Scale: the time of the simulation, it affects the HP decrease time, Age increase time and Dirt increase time.
-> - Manual Cleaning: the dirt mechanic activated or not, if not, it isn't neccesary to clean the fishtank.
+> - Manual Cleaning: if this is toggled off activated, it isn't neccesary to clean the fishtank.
 
 ## Stats
 
 > - Initial Fishes
 > - Born fishes
-> - Death Fishes
+> - Dead Fishes
 > - Oldest Age
 > - Youngest Age
 > - Current Fishes
