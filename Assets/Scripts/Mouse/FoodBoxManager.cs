@@ -6,8 +6,14 @@ public class FoodBoxManager : MonoBehaviour
 
     private void Awake() => FoodToggler.onToggleActivated += Toggle;
 
+    private void OnDisable()
+    {
+        FoodToggler.onToggleActivated -= Toggle;
+    }
+
     void Toggle()
     {
+
         if (FoodToggler.Instance.foodGrabbed)
         {
             foodBox.SetActive(true);
